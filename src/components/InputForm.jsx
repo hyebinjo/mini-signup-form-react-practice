@@ -1,4 +1,10 @@
+import { useEffect, useRef } from 'react'
+
 const InputForm = ({ id, label, inputProps }) => {
+    const inputRef = useRef(null)
+    useEffect(() => {
+        if (id === 'id') inputRef.current.focus()
+    }, [])
     return (
         <div className="mb-4">
             <label
@@ -7,7 +13,7 @@ const InputForm = ({ id, label, inputProps }) => {
             >
                 {label}
             </label>
-            <input id={id} {...inputProps} />
+            <input id={id} {...inputProps} ref={inputRef} />
             <div className="mt-1 mb-3 text-xs text-red-500"></div>
         </div>
     )
