@@ -4,7 +4,7 @@ import { useState, createContext } from 'react'
 const initialFormData = {
     id: '',
     pw: '',
-    comfirmPw: '',
+    'pw-check': '',
 }
 
 export const FormData = createContext({

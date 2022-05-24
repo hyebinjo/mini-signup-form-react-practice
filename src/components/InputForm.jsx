@@ -3,7 +3,7 @@ import { FormData } from './Form'
 
 const InputForm = ({ id, label, inputProps, checkValue, msgId, errorMsg }) => {
     const inputRef = useRef(null)
-    const { formData, setFormData } = useContext(FormData)
+    const { setFormData } = useContext(FormData)
     const [error, setError] = useState()
 
     const validate = () => {
