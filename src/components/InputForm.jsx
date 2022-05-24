@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from 'react'
-import { FormData } from './Form'
+import { FormData } from '../App.js'
 
 const InputForm = ({ id, label, inputProps, checkValue, msgId, errorMsg }) => {
     const inputRef = useRef(null)
@@ -16,7 +16,6 @@ const InputForm = ({ id, label, inputProps, checkValue, msgId, errorMsg }) => {
         } else {
             inputRef.current.classList.remove('border-red-600')
             setError(null)
-            setFormData((prev) => ({ ...prev, [id]: inputRef.current.value }))
         }
     }
     useEffect(() => {
@@ -34,6 +33,9 @@ const InputForm = ({ id, label, inputProps, checkValue, msgId, errorMsg }) => {
                 id={id}
                 {...inputProps}
                 ref={inputRef}
+                onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, [id]: e.target.value }))
+                }
                 onBlur={() => validate()}
             />
             <div id={msgId} className="mt-1 mb-3 text-xs text-red-500">
