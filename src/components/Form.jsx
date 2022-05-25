@@ -20,7 +20,7 @@ const checkPassword = (value) => {
     return validPw.test(value)
 }
 
-const Form = () => {
+const Form = ({ modalRef }) => {
     const { formData } = useContext(FormData)
 
     const confirmPassword = (value) => {
@@ -34,7 +34,7 @@ const Form = () => {
             checkPassword(formData.pw) &&
             confirmPassword(formData['pw-check'])
         ) {
-            console.log('유효성검사 후 제출')
+            modalRef.current.showModal()
         }
     }
 

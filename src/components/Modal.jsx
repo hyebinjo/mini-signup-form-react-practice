@@ -1,6 +1,16 @@
-const Modal = () => {
+import { forwardRef } from 'react'
+import { useContext } from 'react'
+import { FormData } from '../App.js'
+
+const Modal = forwardRef((props, ref) => {
+    const { formData } = useContext(FormData)
+
+    const handleClick = (type) => {
+        ref.current.close()
+        type === 'approve' && alert('가입되었습니다 🥳 ')
+    }
     return (
-        <dialog id="modal" className="rounded-lg shadow-xl text-left">
+        <dialog id="modal" className="rounded-lg shadow-xl text-left" ref={ref}>
             <div className="w-full rounded-lg">
                 <div className="p-6 mt-3">
                     <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -8,14 +18,14 @@ const Modal = () => {
                     </h3>
                     <div className="text-left">
                         <div className="mt-2">
-                            아이디
+                            아이디 {formData.id}
                             <p
                                 id="confirm-id"
                                 className="text-sm text-blue-500 bold"
                             ></p>
                         </div>
                         <div className="mt-2">
-                            비밀번호
+                            비밀번호 {formData.pw}
                             <p
                                 id="confirm-pw"
                                 className="text-sm text-blue-500 bold"
@@ -28,6 +38,7 @@ const Modal = () => {
                         id="cancel-btn"
                         type="button"
                         className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-gray-500 mr-2"
+                        onClick={() => handleClick('cancel')}
                     >
                         취소하기
                     </button>
@@ -35,6 +46,7 @@ const Modal = () => {
                         id="approve-btn"
                         type="button"
                         className="border border-transparent bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-gray-500"
+                        onClick={() => handleClick('approve')}
                     >
                         가입하기
                     </button>
@@ -42,6 +54,6 @@ const Modal = () => {
             </div>
         </dialog>
     )
-}
+})
 
 export default Modal
